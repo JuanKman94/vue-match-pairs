@@ -1,13 +1,25 @@
 <style lang="scss">
 .match-pairs {
-	display: flex;
-	align-content: center;
-	align-items: center;
-	justify-content: center;
-	flex-flow: row wrap;
+    .match-pairs-board {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        flex-flow: row wrap;
 
-	position: relative;
-	perspective: 800px;
+        position: relative;
+        perspective: 800px;
+    }
+
+    .match-pairs-blocker {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        background-color: rgba(191, 191, 191, 0.7);
+    }
 
     .match-pairs-card {
 		text-align: center;
@@ -61,22 +73,43 @@
 
 <template>
 <div class="match-pairs">
-    <div
-        v-for="(v, k) in pairs"
-        class="match-pairs-card"
-        @click="flip(v, k)"
-    >
-        <div :class="{ 'cube': true, 'active': state[k] }">
-            <div class="front">X</div>
+    <div v-if="!startTime">
+        <button
+            class="match-pairs-start"
+            type="button"
+            @click="startTime = new Date()"
+        >
+            Start
+        </button>
+    </div>
 
-            <div class="back">
-                <img v-if="areImages" :src="v">
-                <p v-else>{{ v }}</p>
+    <div class="match-pairs-board">
+        <div
+            v-if="!startTime"
+            class="match-pairs-blocker"
+        ></div>
+
+        <div
+            v-for="(v, k) in pairs"
+            class="match-pairs-card"
+            @click="flip(v, k)"
+        >
+            <div :class="{ 'cube': true, 'active': state[k] }">
+                <div class="front">X</div>
+
+                <div class="back">
+                    <img v-if="areImages" :src="v">
+                    <p v-else>{{ v }}</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <button @click="reset">Reset</button>
+    <button
+        class="match-pairs-reset"
+        type="button"
+        @click="reset"
+    >Reset</button>
 </div>
 </template>
 
@@ -108,6 +141,7 @@ export default {
         return {
             flippin: false,
             moves: 0,
+            startTime: null,
             selected,
             pairs,
             state
@@ -163,7 +197,11 @@ export default {
             this.selected.pop();
 
             this.$emit('match', true);
-            if (this.isComplete()) this.$emit('complete', { moves: this.moves });
+            if (this.isComplete())
+                this.$emit('complete', {
+                    moves: this.moves,
+                    duration: Math.abs(new Date() - this.startTime)
+                });
 
             this.flippin = false;
             return true;
@@ -203,6 +241,8 @@ export default {
             for (let key in this.state) this.state[key] = false;
             this.selected.pop();
             this.selected.pop();
+            this.startTime = null;
+            this.moves = 0;
         },
     },
 }
