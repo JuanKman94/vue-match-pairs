@@ -54,6 +54,20 @@ export default {
     },
 
     methods: {
+
+        /**
+         * Flip the specified card and check if there's a match.
+         *
+         * If there's only one selected card return true.
+         * If there's no match, reset the selected cards state and emit the
+         * `match` event with a false value and return false.
+         * If there's a match, emit the `match` event with a true value and the
+         * `complete` with a Boolean value return true.
+         *
+         * @param card String
+         * @param key var
+         * @return Boolean
+         */
         flip(card, key) {
             this.state[key] = true;
             this.selected.push({ key, value: card });
@@ -78,16 +92,42 @@ export default {
             // reset the selected cards
             this.selected.pop();
             this.selected.pop();
+
             this.$emit('match', true);
+            this.$emit('complete', this.isComplete());
+
             return true;
         },
 
+        /**
+         * Check if the selected cards match
+         *
+         * @return Boolean
+         */
         isMatch() {
             if (this.selected.length != 2) return false;
 
             return this.selected[0].value == this.selected[1].value;
         },
 
+        /**
+         * Return whether the game set is complete
+         *
+         * @return Boolean
+         */
+        isComplete() {
+            for (let k in this.state)
+                if (!this.state[k])
+                    return false;
+
+            return true;
+        },
+
+        /**
+         * Reset the game's board and state
+         *
+         * @return void
+         */
         reset() {
             for (let key in this.state) this.state[key] = false;
             this.selected.pop();
