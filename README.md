@@ -1,21 +1,33 @@
-# memory-match-pairs
+# vue-match-pairs
+
+A memory match-pairs game implementation with Vue. Inspired by
+[this](http://www.kielack.com/games/memory.php) vanilla JS implementation.
 
 Awesome roll over effects thanks to [codepo8](https://github.com/codepo8),
 mostly based on [this](http://thewebrocks.com/demos/cuberollovers/).
 
-> A Vue.js project created with vue-cli
+## TODO
 
-## Build Setup
+Publish the component on NPM
+(see [this](https://vuejsdevelopers.com/2017/07/31/vue-component-publish-npm/)).
 
-``` bash
-# install dependencies
-npm install
+It would be cool the make `random-js` and optional dependency, i.e., if you
+don't use it in your project, export a default function (see
+[dynamic imports](http://2ality.com/2017/01/import-operator.html)). E.g.:
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
+```js
+// myrandom.js
+import('random-js')
+.then( Random => export default Random)
+.catch( err => {
+    export default {
+        shuffle() {}
+    }
+})
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+And in the `MatchPairs.vue` component:
+
+```js
+import Random from './myrandom';
+```

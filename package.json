@@ -1,5 +1,5 @@
 {
-  "name": "memory-match-pairs",
+  "name": "vue-match-pairs",
   "description": "A memory match-pairs game implementation with Vue2",
   "version": "1.0.0",
   "author": "JuanKman94",
