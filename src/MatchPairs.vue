@@ -1,74 +1,17 @@
-<style lang="scss">
-.front { z-index: 2; }
-.back { z-index: 1; }
-.match-pairs-card.active .front, .match-pairs-card.active .front { z-index: 1; }
-.match-pairs-card.active .back, .match-pairs-card.active .back { z-index: 2; }
-
-.cube {
-    display: block;
-    position: relative;
-    margin: 50px auto;
-    height: 100%;
-    width: 100%;
-    transform-style: preserve-3d;
-    transition: 1.5s linear;
-    transform: rotateY(0deg); 
-
-    &.active {
-        transform: rotateY(180deg);
-    }
-}
-
-.flat .front {
-	background: #fff;
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	transform: translateZ(0) scale(1.2, 1.2);
-	backface-visibility: hidden;
-}
-.flat .back {
-	background: #666;
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	transform: translateZ(0) rotateY(180deg) scale(1.2, 1.2);
-	backface-visibility: hidden;
-}
-
-.match-pairs {
-	position: relative;
-
-    .match-pairs-card {
-        cursor: pointer;
-        display: block;
-        background-color: red;
-        height: 200px;
-        width: 200px;
-
-        .back {
-            color: white;
-            background-color: red;
-        }
-    }
-}
+<style src="./css/match-pairs.scss" lang="scss">
 </style>
 
 <template>
 <div class="match-pairs">
     <div
         v-for="(v, k) in pairs"
-        :class="cssClasses(k)"
+        class="match-pairs-card"
         @click="flip(v, k)"
     >
-        <div class="flat">
-            <div :class="{ 'cube': true, 'active': state[k] }">
-                <div class="front"></div>
-                <div class="back">
-                    <slot name="item">
-                        <strong>{{ k }}</strong>: {{ v }}
-                    </slot>
-                </div>
+        <div :class="{ 'cube': true, 'active': state[k] }">
+            <div class="front">X</div>
+            <div class="back">
+                <img :src="v">
             </div>
         </div>
     </div>
@@ -83,7 +26,8 @@ export default {
 
     props: {
         set: { type: Array, required: true },
-        showTime: { type: Boolean, default: false }
+        showTime: { type: Boolean, default: false },
+        areImages: { type: Boolean, default: false }
     },
 
     data() {
@@ -108,13 +52,6 @@ export default {
             this.state[key] = !this.state[key];
             console.debug('flip: item =>', item, '; key =>', key);
         },
-
-        cssClasses(key) {
-            return {
-                'match-pairs-card': true,
-                'active': this.state[key]
-            };
-        }
     },
 }
 </script>
