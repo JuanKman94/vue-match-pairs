@@ -104,7 +104,7 @@ export default {
             this.selected.pop();
 
             this.$emit('match', true);
-            this.$emit('complete', this.isComplete());
+            if (this.isComplete()) this.$emit('complete', true);
 
             this.flippin = false;
             return true;
