@@ -48,6 +48,7 @@ export default {
         });
 
         return {
+            flippin: false,
             selected,
             pairs,
             state
@@ -70,10 +71,16 @@ export default {
          * @return Boolean
          */
         flip(card, key) {
+            if (this.flippin) return false;
+
+            this.flippin = true;
             this.state[key] = true;
             this.selected.push({ key, value: card });
 
-            if (this.selected.length < 2) return true;
+            if (this.selected.length < 2) {
+                this.flippin = false;
+                return true;
+            }
 
             if (!this.isMatch()) {
                 window.setTimeout(() => {
@@ -84,6 +91,8 @@ export default {
                     // reset the selected cards
                     this.selected.pop();
                     this.selected.pop();
+
+                    this.flippin = false;
                 }, this.timeout);
 
                 this.$emit('match', false);
@@ -97,6 +106,7 @@ export default {
             this.$emit('match', true);
             this.$emit('complete', this.isComplete());
 
+            this.flippin = false;
             return true;
         },
 
