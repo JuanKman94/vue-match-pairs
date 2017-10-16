@@ -107,6 +107,7 @@ export default {
 
         return {
             flippin: false,
+            moves: 0,
             selected,
             pairs,
             state
@@ -162,7 +163,7 @@ export default {
             this.selected.pop();
 
             this.$emit('match', true);
-            if (this.isComplete()) this.$emit('complete', true);
+            if (this.isComplete()) this.$emit('complete', { moves: this.moves });
 
             this.flippin = false;
             return true;
@@ -176,6 +177,7 @@ export default {
         isMatch() {
             if (this.selected.length != 2) return false;
 
+            this.moves++;
             return this.selected[0].value == this.selected[1].value;
         },
 
