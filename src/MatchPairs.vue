@@ -12,7 +12,8 @@
             <div class="front">X</div>
 
             <div class="back">
-                <img :src="v">
+                <img v-if="areImages" :src="v">
+                <p v-else>{{ v }}</p>
             </div>
         </div>
     </div>
