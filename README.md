@@ -16,9 +16,64 @@ A Vue.js Plugin
 
 ## Table of contents
 
-- [Installation](#installation)
 - [Usage](#usage)
+- [TODO](#todo)
+- [Installation](#installation)
 - [Example](#example)
+
+# Usage
+
+```html
+<match-pairs :set="[ 'a', 'b', 'c', 'd' ]" timeout="1000"></match-pairs>
+```
+
+# Example
+
+In your JS code:
+
+```js
+...
+let app = new Vue({
+    el: '#app',
+    data () {
+        return {
+            myImages: [
+                'http://www.bfi.org.uk/sites/bfi.org.uk/files/styles/gallery_3x4/public/image/blade-runner-1982-010-rutger-hauer-against-graffiti-wall.jpg?itok=bD_E2dvF',
+                'http://silverscreenmodes.com/wp-content/uploads/2014/03/Blade_Runner-7-Darryl-Hannah-as-Pris.jpg',
+                'https://4.bp.blogspot.com/-OH2Osb1RWss/UCooWbbVH5I/AAAAAAAAAis/R9hrpIY7avY/s1600/sean_young_blade_runner.jpg',
+                'http://silverscreenmodes.com/wp-content/uploads/2014/03/Blade-Runner-9-Harrison-Ford_.jpg',
+            ],
+        };
+    },
+    methods: {
+        confetti () {
+            console.info('YAY!');
+        },
+        congrats (stats) {
+            let msg = 'Congratularions! It took you ' +
+                    stats.duration + ' seconds and ' + stats.moves + ' moves';
+            alert(msg);
+        }
+    }
+});
+```
+
+And in your view:
+
+```html
+<main id=app>
+    <match-pairs
+        :set="myImages"
+        :are-images="true"
+        @match="confetti"
+        @complete="congrats"
+    ></match-pairs>
+</main>
+```
+
+# TODO
+
+* Make the `start` button action optional
 
 # Installation
 
@@ -41,9 +96,9 @@ Use specific components:
 
 ```javascript
 import Vue from 'vue'
-import { Test } from 'vue-match-pairs'
+import { MatchPairs } from 'vue-match-pairs'
 
-Vue.component('test', Test)
+Vue.component('match-pairs', MatchPairs)
 ```
 
 **⚠️ A css file is included when importing the package. You may have to setup your bundler to embed the css in your page.**
@@ -63,9 +118,9 @@ Use specific components:
 
 ```javascript
 import 'vue-match-pairs/dist/vue-match-pairs.css'
-import { Test } from 'vue-match-pairs/dist/vue-match-pairs.common'
+import { MatchPairs } from 'vue-match-pairs/dist/vue-match-pairs.common'
 
-Vue.component('test', Test)
+Vue.component('match-pairs', MatchPairs)
 ```
 
 **⚠️ You may have to setup your bundler to embed the css file in your page.**
@@ -87,12 +142,6 @@ Install all the components:
 Vue.use(VueMatchPairs)
 ```
 
-Use specific components:
-
-```javascript
-Vue.component('test', VueMatchPairs.Test)
-```
-
 ## Source import
 
 Install all the components:
@@ -108,20 +157,12 @@ Use specific components:
 
 ```javascript
 import Vue from 'vue'
-import { Test } from 'vue-match-pairs/src'
+import { MatchPairs } from 'vue-match-pairs/src/MatchPairs.vue'
 
-Vue.component('test', Test)
+Vue.component('match-pairs', MatchPairs)
 ```
 
 **⚠️ You need to configure your bundler to compile `.vue` files.** More info [in the official documentation](https://vuejs.org/v2/guide/single-file-components.html).
-
-# Usage
-
-> TODO
-
-# Example
-
-> TODO
 
 ---
 

@@ -179,8 +179,9 @@ export default {
          * If there's only one selected card return true.
          * If there's no match, reset the selected cards state and emit the
          * `match` event with a false value and return false.
-         * If there's a match, emit the `match` event with a true value and the
-         * `complete` with a Boolean value return true.
+         * If there's a match, emit the `match` event with a true value.
+         * If the board is complete, emit the `complete` event with an object
+         * of two properties: moves and duration.
          *
          * @param card String
          * @param key var
