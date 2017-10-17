@@ -122,12 +122,13 @@
  * @param Array array
  * @return Array array
  */
-function shuffle(array) {
-    var m = array.length, t, i;
+function shuffle (array) {
+    var m = array.length,
+        t,
+        i;
 
     // While there remain elements to shuffle
     while (m) {
-
         // Pick a remaining element
         i = Math.floor(Math.random() * m--);
 
@@ -147,17 +148,16 @@ export default {
         set: { type: Array, required: true },
         timeout: { type: Number, default: 1500 },
         showTime: { type: Boolean, default: false },
-        areImages: { type: Boolean, default: false }
+        areImages: { type: Boolean, default: false },
     },
 
-    data() {
+    data () {
         // create default engine for Random
-        let pairs = shuffle(Array.concat( this.set, this.set )),
-            selected = new Array(0);
+        let pairs = shuffle(Array.concat(this.set, this.set)),
+            selected = new Array(0),
+            state = {}; // reactiveness isn't good with arrays
 
-        // reactiveness isn't good with arrays
-        let state = {};
-        pairs.forEach(function(elem, i, arr) {
+        pairs.forEach(function (elem, i, arr) {
             state[i] = false;
         });
 
@@ -167,7 +167,7 @@ export default {
             startTime: null,
             selected,
             pairs,
-            state
+            state,
         };
     },
 
@@ -186,7 +186,7 @@ export default {
          * @param key var
          * @return Boolean
          */
-        flip(card, key) {
+        flip (card, key) {
             if (this.flippin) return false;
 
             this.flippin = true;
@@ -223,7 +223,7 @@ export default {
             if (this.isComplete())
                 this.$emit('complete', {
                     moves: this.moves,
-                    duration: Math.abs(new Date() - this.startTime)
+                    duration: Math.abs(new Date() - this.startTime),
                 });
 
             this.flippin = false;
@@ -235,11 +235,11 @@ export default {
          *
          * @return Boolean
          */
-        isMatch() {
-            if (this.selected.length != 2) return false;
+        isMatch () {
+            if (this.selected.length !== 2) return false;
 
             this.moves++;
-            return this.selected[0].value == this.selected[1].value;
+            return this.selected[0].value === this.selected[1].value;
         },
 
         /**
@@ -247,7 +247,7 @@ export default {
          *
          * @return Boolean
          */
-        isComplete() {
+        isComplete () {
             for (let k in this.state)
                 if (!this.state[k])
                     return false;
@@ -260,7 +260,7 @@ export default {
          *
          * @return void
          */
-        reset() {
+        reset () {
             for (let key in this.state) this.state[key] = false;
             this.selected.pop();
             this.selected.pop();
@@ -268,5 +268,5 @@ export default {
             this.moves = 0;
         },
     },
-}
+};
 </script>
