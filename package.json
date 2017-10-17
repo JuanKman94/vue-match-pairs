@@ -16,7 +16,6 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "random-js": "^1.0.8",
     "vue": "^2.4.4"
   },
   "devDependencies": {

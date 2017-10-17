@@ -114,7 +114,31 @@
 </template>
 
 <script>
-import Random from 'random-js';
+/**
+ * Fisher-Yates shuffle algorithm. See https://bost.ocks.org/mike/shuffle/
+ *
+ * Shuffle the Array `array` argument *in-place*
+ *
+ * @param Array array
+ * @return Array array
+ */
+function shuffle(array) {
+    var m = array.length, t, i;
+
+    // While there remain elements to shuffle
+    while (m) {
+
+        // Pick a remaining element
+        i = Math.floor(Math.random() * m--);
+
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+    }
+
+    return array;
+}
 
 export default {
     name: 'match-pairs',
@@ -128,8 +152,7 @@ export default {
 
     data() {
         // create default engine for Random
-        let engine = Random.engines.mt19937().autoSeed();
-        let pairs = Random.shuffle(engine, Array.concat(this.set, this.set)),
+        let pairs = shuffle(Array.concat( this.set, this.set )),
             selected = new Array(0);
 
         // reactiveness isn't good with arrays
