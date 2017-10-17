@@ -265,6 +265,7 @@ export default {
             this.selected.pop();
             this.selected.pop();
             this.startTime = null;
+            this.pairs = shuffle(this.pairs);
             this.moves = 0;
         },
     },
