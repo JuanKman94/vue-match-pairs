@@ -29,6 +29,8 @@ A Vue.js Plugin
 
 # Example
 
+How about a [jsFiddle](https://jsfiddle.net/gh/get/library/pure/JuanKman94/vue-match-pairs/tree/master/demo)?
+
 In your JS code:
 
 ```js
