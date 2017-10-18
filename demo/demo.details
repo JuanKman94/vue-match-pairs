@@ -6,4 +6,7 @@ authors:
 resources:
 	- https://github.com/juankman94/vue-match-pairs
 normalize_css: yes
+wrap: d
+external_resources:
+	- https://cdn.jsdelivr.net/npm/vue
  ...
