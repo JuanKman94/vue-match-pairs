@@ -2,11 +2,11 @@
 name: Vue2 Match Pairs
 description: A memory match-pairs game implementation with Vue2
 authors:
-	- JuanKman94
+    - JuanKman94
 resources:
-	- https://github.com/juankman94/vue-match-pairs
+    - https://github.com/juankman94/vue-match-pairs
 normalize_css: yes
 wrap: d
 external_resources:
-	- https://cdn.jsdelivr.net/npm/vue
+    - https://cdn.jsdelivr.net/npm/vue
  ...
