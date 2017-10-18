@@ -1,15 +1,20 @@
 {
   "name": "vue-match-pairs",
-  "description": "A Vue.js Plugin",
+  "description": "A memory match-pairs game implementation with Vue2",
   "version": "1.0.2",
   "author": {
-    "name": "juankman",
-    "email": "juankman9"
+    "name": "juankman94",
+    "email": "juankman94"
   },
   "keywords": [
     "vue",
     "vuejs",
-    "plugin"
+    "plugin",
+    "match",
+    "pairs",
+    "match-pairs",
+    "memory",
+    "games"
   ],
   "license": "MIT",
   "main": "dist/vue-match-pairs.common.js",
