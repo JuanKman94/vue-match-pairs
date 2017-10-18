@@ -27,8 +27,8 @@
 		margin: 1rem;
 
 		img {
-			max-width: 100%;
-			max-height: 100%;
+			max-width: 200px;
+			max-height: 200px;
 		}
 
 		&.active {
