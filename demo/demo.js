@@ -17,8 +17,9 @@ var app = new Vue({
     },
     methods: {
         congrats: function (stats) {
-            this.status = "Yay! You completed the game in" +
-                stats.duration / 1000 + " with " + stats.moves + " moves.";
+            this.status = "Yay! You completed the game in " +
+                stats.duration / 1000 + " seconds with " + stats.moves
+                + " moves.";
         }
     }
 });

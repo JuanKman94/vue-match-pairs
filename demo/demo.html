@@ -1,13 +1,18 @@
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 <main id="app">
+    <p>
+        <strong>NOTE</strong>: I inserted
+        <code>dist/vue-match-pairs.browser.js</code> in the JS section.
+    </p>
+
     <p><strong>Status</strong>: {{ status }}</p>
 
     <match-pairs
         :set="myImages"
         :are-images="areImages"
         :timeout="delay"
-        @match="status = $ev ? 'Matched!' : 'Oopsie'"
+        @match="status = $event ? 'Matched!' : 'Oopsie'"
         @complete="congrats"
     ></match-pairs>
 </main>
