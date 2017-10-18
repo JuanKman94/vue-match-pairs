@@ -1,0 +1,11 @@
+<main id="app">
+<p><strong>Status</strong>: {{ status }}</p>
+
+    <match-pairs
+        :set="myImages"
+        :are-images="areImages"
+        :timeout="delay"
+        @match="status = $ev ? 'Matched!' : 'Oopsie'"
+        @complete="congrats"
+    ></match-pairs>
+</main>
