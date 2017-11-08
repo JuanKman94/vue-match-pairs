@@ -79,7 +79,7 @@
             type="button"
             @click="startTime = new Date()"
         >
-            Start
+            {{ startText }}
         </button>
     </div>
 
@@ -109,7 +109,7 @@
         class="match-pairs-reset"
         type="button"
         @click="reset"
-    >Reset</button>
+    >{{ resetText }}</button>
 </div>
 </template>
 
@@ -149,6 +149,8 @@ export default {
         timeout: { type: Number, default: 1500 },
         showTime: { type: Boolean, default: false },
         areImages: { type: Boolean, default: false },
+        startText: { type: String, default: 'Start' },
+        resetText: { type: String, default: 'Reset' },
     },
 
     data () {
