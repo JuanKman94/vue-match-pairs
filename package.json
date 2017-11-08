@@ -1,7 +1,7 @@
 {
   "name": "vue-match-pairs",
   "description": "A memory match-pairs game implementation with Vue2",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "author": {
     "name": "juankman94",
     "email": "juankman94"
@@ -19,6 +19,10 @@
   "license": "MIT",
   "main": "dist/vue-match-pairs.common.js",
   "unpkg": "dist/vue-match-pairs.browser.js",
+  "files": [
+	  "dist/",
+	  "src/"
+  ],
   "module": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --config config/webpack.config.dev.js --progress --watch",
